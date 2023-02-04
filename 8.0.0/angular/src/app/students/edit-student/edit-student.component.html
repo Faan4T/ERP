@@ -1,0 +1,86 @@
+<form class="form-horizontal" autocomplete="off" #createStudentForm="ngForm" (ngSubmit)="saveform()">
+    <abp-modal-header [title]="'CreateNewStudent' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="studentName">
+                {{ "First Name" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="firstName" id="firstName" minlength="2" maxlength="64"
+                    required [(ngModel)]="student.firstName" #firstNameModel="ngModel" #firstNameEl />
+                <abp-validation-summary [control]="firstNameModel" [controlEl]="firstNameEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="name">
+                {{ "Last Name" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="lastName" id="lastName" maxlength="128" required
+                    [(ngModel)]="student.lastName" #lastNameModel="ngModel" #lastNameEl />
+                <abp-validation-summary [control]="lastNameModel" [controlEl]="lastNameEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="Email">
+                {{ "Email" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="email" class="form-control" name="Email" id="Email"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" maxlength="256" required
+                    [(ngModel)]="student.email" #Email="ngModel" #EmailEl />
+                <abp-validation-summary [control]="Email" [controlEl]="EmailEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row ">
+            <label class="col-md-3 col-form-label" for="Dob">
+                {{ "DateOfBirth" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="date" class="form-control" name="Dob" id="Dob" (ngModelChange)="date = $event"
+                    [ngModel]="dateTime | date:'yyyy-MM-dd'" #dobModel="ngModel" #dobEl />
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="Age">
+                {{ "Age" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="number" min="1" class="form-control" name="Age" id="Age" maxlength="2" required
+                    [(ngModel)]="student.age" #AgeModel="ngModel" #AgeEl />
+                <abp-validation-summary [control]="AgeModel" [controlEl]="AgeEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="DepartmentName">
+                {{ "Department " | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="DepartmentName" id="DepartmentName" maxlength="128"
+                    disabled required [(ngModel)]="departmentName" />
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="RollNo">
+                {{ "Roll-No" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="RollNo" id="RollNo" maxlength="128" required
+                    [(ngModel)]="student.rollNo" disabled #RollNoModel="ngModel" #RollNoEl />
+                <abp-validation-summary [control]="RollNoModel" [controlEl]="RollNoEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="PhoneNo">
+                {{ "Phone-No" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="PhoneNo" id="PhoneNo" maxlength="128" required
+                    [(ngModel)]="student.phoneNo" #PhoneNoModel="ngModel" #PhoneNoEl />
+                <abp-validation-summary [control]="PhoneNoModel" [controlEl]="PhoneNoEl"></abp-validation-summary>
+            </div>
+        </div>
+        <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createStudentForm.form.valid || saving"
+            (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+    </div>
+</form>

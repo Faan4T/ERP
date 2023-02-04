@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <p-tree [value]="studentsTree" >
+        <ng-template let-node pTemplate="url">
+            <a [href]="node.key">{{node.label}}</a>
+        </ng-template>
+        <ng-template let-node pTemplate="default">
+            <b>{{node.label}}</b>
+        </ng-template>
+    </p-tree>
+</div>
